@@ -8,7 +8,7 @@ function parseFile(req){
         if ( y2r.getLogger().has('error') ) {
             const logs = y2r.getLogger().getAll();
             console.trace(logs)
-            reject()
+            reject(logs)
          }
          const prefixes = y2r.getPrefixes();
          const writer = new N3.Writer({ prefixes: prefixes});
@@ -16,7 +16,7 @@ function parseFile(req){
          writer.end((error, result) => {
              if(error){
                  console.trace(error)
-                 reject()
+                 reject(error)
              }
              resolve(result)
          })
