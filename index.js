@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.post('/parse', async (req, res) => {
   const data = await services.parseFile(req).catch((err) => {
     console.trace(err)
-    res.status(500).send("Internal server error.")
+    res.status(500).send(JSON.stringify(err))
   });
   if(data)
     res.status(200).json(data)
